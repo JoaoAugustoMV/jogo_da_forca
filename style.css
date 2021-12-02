@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body{
+    background-color: rgb(0, 255, 98);
+}
+
+header{
+
+}
+
+.game{
+    background-color: white;
+    
+    width: 1000px;
+    margin:auto;
+}
+
+div#escolher{
+    background-color: red;
+
+}
+
+div#jogar{  
+    background-color: green;
+}
+
+div#resul{
+    background-color: yellow;
+
+}
