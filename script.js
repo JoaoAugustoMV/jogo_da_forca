@@ -3,22 +3,20 @@ var div_escolher = document.getElementById('escolher')
 var div_jogar = document.getElementById('jogar')
 var div_resul = document.getElementById('resul')
 
-
+// -----------ul-----------
 var ul = document.createElement('ul')
 
-
-var list_status = [letras_corretas, letras_erradas, tentativas]
-for (i in list_status){
+var list_status = [letras_corretas, letras_erradas, tentativas] // Lista com as informações da partida
+for (i in list_status){ // for para criar e preencher os itens(os li) da lista ul
     var li = document.createElement('li')
     li.appendChild(document.createTextNode('list_status[i]'))
     ul.appendChild((li))
 } // end for
-div_resul.appendChild(ul)
-var lis = document.getElementsByTagName('li')
-ul.style.display = 'none'
+div_resul.appendChild(ul) // Add a lista ul a div resul
+var lis = document.getElementsByTagName('li') // Agrupa as tag li
+ul.style.display = 'none' // Esconde a lista ul
 
-
-var h1 = document.getElementsByTagName('h1')[0]
+var h1 = document.getElementsByTagName('h1')[0] // Pega as tag h1, no caso só tem uma 
 
 // -----------inputs-----------
 var btn = document.getElementsByClassName('botao')
@@ -26,6 +24,7 @@ var palavra_escolhida = document.getElementById('palavra_escolhida')
 var letra = document.getElementById('input_letra') // Letra informada pelo jogador
 
 //-----------EventListener-----------
+// Ao apertar enter
 palavra_escolhida.addEventListener('keypress', function(enter){
     if(enter.key === 'Enter'){
         btn[0].click()
@@ -76,7 +75,6 @@ function boneco(tentativas){ // Retorna como esta a situação do boneco(um cami
 
 function confirmar(){ // Escolha da palavra
     
-
     let tag_p = document.createElement('p') // Criando a tag p
     let texto_p = document.createTextNode('Palavra confirmada') // Criando um str para adicionar na tag p
     tag_p.appendChild(texto_p) // Adicionando o texto na tag p
@@ -94,7 +92,7 @@ function confirmar(){ // Escolha da palavra
 
 
 function tentativa(){ // Testa a tentativa do jogador
-    var escondida = ''
+    var escondida = '' // str para mostrar como esta os acertos da palavra
     
     for (l in palavra_escolhida.value){ // Varre a palavra escolhida
         if (tem(letra.value, palavra_escolhida.value)){ // Se tem a letra informada na palavra
@@ -117,25 +115,27 @@ function tentativa(){ // Testa a tentativa do jogador
         }
         
     } // end for palavra_escolhida*/
+
     p_escondida.innerText = escondida
     
     let list_status = [letras_corretas, letras_erradas, tentativas]
-    let lista = [`Corretas: ${list_status[0]}`, `Incorretas: ${list_status[1]}`, `Tentativas Restantes: ${list_status[2]}` ]
+    let lista = [`Corretas: ${list_status[0]}`, `Incorretas: ${list_status[1]}`, `Tentativas Restantes: ${list_status[2]}` ] // status
     for (i in lista){
         lis[i].innerText = lista[i]
     }
     
-    ul.style.display = 'block'
-    letra.value = ''
+    ul.style.display = 'block' // Exibe a lista
+    letra.value = '' // Limpa a caixa de texto
     
-    img.setAttribute('src', boneco(tentativas))
-    div_resul.appendChild(img)
-    if (tentativas == 0){
-        p_resultado.style.display = 'block'
+    img.setAttribute('src', boneco(tentativas))// Indica a fonte da imagem pela função boneco(retorna a imagem em função das tentativas restantes)
+    div_resul.appendChild(img) // Add a img a div
+
+    if (tentativas == 0){ // Se acabar as tentativas, o jogador perde
+        p_resultado.style.display = 'block' //
         p_resultado.innerHTML = `Perdeu <br> A palavra era ${palavra_escolhida.value}`
         div_jogar.style.display = 'none'
     }
-    if (escondida.indexOf('_') == -1){
+    if (escondida.indexOf('_') == -1){ // Se não tiver '_' significa que o jogador acertou todas a letras, logo venceu
         p_resultado.style.display = 'block'
         p_resultado.innerText = 'Ganhou'
         div_jogar.style.display = 'none'
