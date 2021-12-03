@@ -49,8 +49,7 @@ var tentativas = 6
 var letras_erradas = [] // Guarda os acertos
 var letras_corretas = [] // Guarda os erros
 
-//----------- Inicio-----------
-palavra_escolhida.focus() // Cursor na caixa de texto
+
 
 function tem(x, lista){ // Diz se tal valor tem na lista
     for (i in lista){
@@ -144,7 +143,8 @@ function tentativa(){ // Testa a tentativa do jogador
     
 } // end tentativa()
 
-
+//----------- Inicio-----------
+palavra_escolhida.focus() // Cursor na caixa de texto
 
 /* 
  - Ler palavra a ser descoberta (check)
