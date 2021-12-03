@@ -4,6 +4,20 @@ var div_jogar = document.getElementById('jogar')
 var div_resul = document.getElementById('resul')
 
 
+var ul = document.createElement('ul')
+
+
+var list_status = [letras_corretas, letras_erradas, tentativas]
+for (i in list_status){
+    var li = document.createElement('li')
+    li.appendChild(document.createTextNode('list_status[i]'))
+    ul.appendChild((li))
+} // end for
+div_resul.appendChild(ul)
+var lis = document.getElementsByTagName('li')
+ul.style.display = 'none'
+
+
 var h1 = document.getElementsByTagName('h1')[0]
 
 // -----------inputs-----------
@@ -61,6 +75,8 @@ function boneco(tentativas){ // Retorna como esta a situação do boneco(um cami
 } // end boneco()
 
 function confirmar(){ // Escolha da palavra
+    
+
     let tag_p = document.createElement('p') // Criando a tag p
     let texto_p = document.createTextNode('Palavra confirmada') // Criando um str para adicionar na tag p
     tag_p.appendChild(texto_p) // Adicionando o texto na tag p
@@ -102,8 +118,14 @@ function tentativa(){ // Testa a tentativa do jogador
         
     } // end for palavra_escolhida*/
     p_escondida.innerText = escondida
-    p_status.innerText = (`Erradas: ${letras_erradas}, corretas: ${letras_corretas}, tentativas: ${tentativas}`)
-        
+    
+    let list_status = [letras_corretas, letras_erradas, tentativas]
+    let lista = [`Corretas: ${list_status[0]}`, `Incorretas: ${list_status[1]}`, `Tentativas Restantes: ${list_status[2]}` ]
+    for (i in lista){
+        lis[i].innerText = lista[i]
+    }
+    
+    ul.style.display = 'block'
     letra.value = ''
     
     img.setAttribute('src', boneco(tentativas))

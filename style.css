@@ -22,16 +22,29 @@ main{
     border-radius: 10px;
     box-shadow: 1px 2px 10px black;
     text-align:center;
-    font-size:20px;
+    font-size:18px;
 }
 
+img{
+    height:100%;
+}
 p{
     margin:0px auto;
     padding:10px;
 }
+p#escondida{
+    font-size: 30px;
+}
 
+ul{
+    margin:0px;
+}
+li{
+    text-align: left;
+}
 input{
     margin:1px 10px;
+    margin-bottom: 10px;
 }
 div#escolher{
 
