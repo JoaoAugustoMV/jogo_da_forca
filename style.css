@@ -2,29 +2,54 @@
 
 body{
     background-color: rgb(0, 255, 98);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-header{
-
+h1{
+    margin: 2px auto;
+    text-align: center;
+    font-weight: bold; /* h1 é sempre bold*/
+    font-size: 30px;
+    color: white;
 }
 
-.game{
+main{
     background-color: white;
+    max-width: 600px;
+    min-width: 400px;
     
-    width: 1000px;
     margin:auto;
+    border-radius: 10px;
+    box-shadow: 1px 2px 10px black;
+    text-align:center;
+    font-size:20px;
 }
 
+p{
+    margin:0px auto;
+    padding:10px;
+}
+
+input{
+    margin:1px 10px;
+}
 div#escolher{
-    background-color: red;
+
 
 }
 
 div#jogar{  
-    background-color: green;
+    
+    margin-bottom:0px;
 }
 
 div#resul{
-    background-color: yellow;
+    
+    margin-top:0px;
+}
 
+footer{
+    text-align:center;
+    margin-top:10px;
+    font-style:italic;
 }

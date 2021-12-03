@@ -10,26 +10,28 @@
 <body>
     <header><h1>Bem vindo ao Jogo da Forca :)</h1></header>
     
-        <div id='escolher' class='game'>
-            <p>Insira a palavra a ser descoberta:</p>
-            <input type="text" name="" id="palavra_escolhida">
-            <input type="button" value="Confirmar" onclick=confirmar() class='botao'>
-        </div>
-        <div id='jogar' class='game' hidden>
-            <p>Hora de Jogar!</p>
-            <p>Faça sua tentativa</p>
-            <input type="text" name="" id="input_letra" maxlength="1">
-            <input type="button" value="Confirmar" onclick=tentativa() class='botao'>
-        
-        </div>
-        
-        <div id='resul' class='game' hidden>
-            <p id='escondida'></p>
-            <p id='status'></p>
-            <p hidden id='resultado'>teste</p>
-        </div>
+        <main>
+            <div id='escolher' class='game'>
+                <p>Insira a palavra a ser descoberta:</p>
+                <input type="text" name="" id="palavra_escolhida">
+                <input type="button" value="Confirmar" onclick=confirmar() class='botao'>
+            </div>
+            <div id='jogar' class='game' hidden>
+                
+                <p>Faça sua tentativa</p>
+                <input type="text" name="" id="input_letra" maxlength="1">
+                <input type="button" value="Confirmar" onclick=tentativa() class='botao'>
+            
+            </div>
+            
+            <div id='resul' class='game' hidden>
+                <p id='escondida'></p>
+                <p id='status'></p>
+                <p hidden id='resultado'>teste</p>
+            </div>
+        </main>
     
-
+        <footer>Desenvolvido por João Augusto</footer>
     
     <script src="script.js"></script>
 </body>

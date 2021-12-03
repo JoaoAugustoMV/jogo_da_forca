@@ -3,6 +3,9 @@ var div_escolher = document.getElementById('escolher')
 var div_jogar = document.getElementById('jogar')
 var div_resul = document.getElementById('resul')
 
+
+var h1 = document.getElementsByTagName('h1')[0]
+
 // -----------inputs-----------
 var btn = document.getElementsByClassName('botao')
 var palavra_escolhida = document.getElementById('palavra_escolhida')
@@ -68,6 +71,7 @@ function confirmar(){ // Escolha da palavra
         div_jogar.style.display = 'block' // Mostra a div
         div_resul.style.display = 'block'
         letra.focus() // Cursor na caixa de texto
+        h1.innerText = 'Hora de Jogar!'
     }, 1000)
     
 } // end confirmar()
@@ -106,7 +110,7 @@ function tentativa(){ // Testa a tentativa do jogador
     div_resul.appendChild(img)
     if (tentativas == 0){
         p_resultado.style.display = 'block'
-        p_resultado.innerText = 'Perdeu'
+        p_resultado.innerHTML = `Perdeu <br> A palavra era ${palavra_escolhida.value}`
         div_jogar.style.display = 'none'
     }
     if (escondida.indexOf('_') == -1){
