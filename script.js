@@ -58,9 +58,28 @@ function tem(x, lista){ // Diz se tal valor tem na lista
     }
     return false
 }
-function validaLetra(l){
+function validaLetra(l){ // Valida se é letra ou se já foi informada
+    let code = l.charCodeAt()
+    alert(code)
+    let letras_informadas = []
+    letras_informadas = (letras_informadas.concat(letras_corretas, letras_erradas))
+    
+    // A = 65
+    // Z = 90
+    if (code >= 65 && code <= 90){ // Se é letra
+        if (letras_informadas.includes(l)){ // Se a letra já foi digitada, retorna false
+            alert('Letra já informada, digite outra')
+            return false
+        } // end if(letras_informadas.includes(l))
 
+        return true // Se é letra e não foi digitada ainda, retorna true
 
+    //  end if (code >= 65 && code <= 90)    
+
+    } else{ // Se não é letra, retorna false
+        alert('Por favor, informe uma letra')
+        return false
+    } // end else
 } // end validaLetra()
 
 function boneco(tentativas){ // Retorna como esta a situação do boneco(um caminho de imagem)
@@ -98,54 +117,60 @@ function tentativa(){ // Testa a tentativa do jogador
     var escondida = '' // str para mostrar como esta os acertos da palavra
     let palavra = palavra_escolhida.value.toUpperCase()
     let letter = letra.value.toUpperCase()
-    for (l in palavra){ // Varre a palavra escolhida
-        if (tem(letter, palavra)){ // Se tem a letra informada na palavra
-             
-            if (!tem(letter, letras_corretas)){ // Se não tem a letra correta nos acertos ainda
-                letras_corretas.push(letter) // Add ao array
-            }
-            
-        } else{ // Se NAO tem a letra informada na palavra
-            if (!tem(letter, letras_erradas)){ // Se NAO tem a letra incorreta nos erros ainda
-                letras_erradas.push(letter) // Add ao array
-                tentativas -= 1 // Perde uma vida
+    
+        if(validaLetra(letter)){ // Se for letra
+
+            for (l in palavra){ // Varre a palavra escolhida
+                if (tem(letter, palavra)){ // Se tem a letra informada na palavra
+                    
+                    if (!tem(letter, letras_corretas)){ // Se não tem a letra correta nos acertos ainda
+                        letras_corretas.push(letter) // Add ao array
+                    } // end if
+                    
+                } else{ // Se NAO tem a letra informada na palavra
+                    if (!tem(letter, letras_erradas)){ // Se NAO tem a letra incorreta nos erros ainda
+                        letras_erradas.push(letter) // Add ao array
+                        tentativas -= 1 // Perde uma vida   
+                    } // end if
+                } // end else
+
+                if (tem(palavra[l], letras_corretas)){ // Se a letra do indice esta nas já acertadas
+                    escondida += palavra[l] // Exibe a letra acertada
+                } else{ // Se a letra do indice nao foi acertada
+                    escondida += ' _ ' // 
+                } // end else
                 
-            }
+            } // end for palavra_escolhida*/
+
+            p_escondida.innerText = escondida
+            
+            let list_status = [letras_corretas, letras_erradas, tentativas]
+            let lista = [`Corretas: ${list_status[0]}`, `Incorretas: ${list_status[1]}`, `Tentativas Restantes: ${list_status[2]}` ] // status
+
+            for (i in lista){
+                lis[i].innerText = lista[i]
+            } // end for
+            
+            ul.style.display = 'block' // Exibe a lista
+            letra.value = '' // Limpa a caixa de texto
+            
+            img.setAttribute('src', boneco(tentativas))// Indica a fonte da imagem pela função boneco(retorna a imagem em função das tentativas restantes)
+            div_resul.appendChild(img) // Add a img a div
+
+            if (tentativas == 0){ // Se acabar as tentativas, o jogador perde
+                p_resultado.style.display = 'block' //
+                p_resultado.innerHTML = `Perdeu <br> A palavra era ${palavra}`
+                div_jogar.style.display = 'none'
+            } // end if
+            if (escondida.indexOf('_') == -1){ // Se não tiver '_' significa que o jogador acertou todas a letras, logo venceu
+                p_resultado.style.display = 'block'
+                p_resultado.innerText = 'Ganhou'
+                div_jogar.style.display = 'none'
+            } // end if
+
+        } /* end if(validaLetra) */ else{
+            letra.value = ''
         }
-        if (tem(palavra[l], letras_corretas)){ // Se a letra do indice esta nas já acertadas
-            escondida += palavra[l] // Exibe a letra acertada
-        } else{ // Se a letra do indice nao foi acertada
-            escondida += ' _ ' // 
-        }
-        
-    } // end for palavra_escolhida*/
-
-    p_escondida.innerText = escondida
-    
-    let list_status = [letras_corretas, letras_erradas, tentativas]
-    let lista = [`Corretas: ${list_status[0]}`, `Incorretas: ${list_status[1]}`, `Tentativas Restantes: ${list_status[2]}` ] // status
-    for (i in lista){
-        lis[i].innerText = lista[i]
-    }
-    
-    ul.style.display = 'block' // Exibe a lista
-    letra.value = '' // Limpa a caixa de texto
-    
-    img.setAttribute('src', boneco(tentativas))// Indica a fonte da imagem pela função boneco(retorna a imagem em função das tentativas restantes)
-    div_resul.appendChild(img) // Add a img a div
-
-    if (tentativas == 0){ // Se acabar as tentativas, o jogador perde
-        p_resultado.style.display = 'block' //
-        p_resultado.innerHTML = `Perdeu <br> A palavra era ${palavra}`
-        div_jogar.style.display = 'none'
-    }
-    if (escondida.indexOf('_') == -1){ // Se não tiver '_' significa que o jogador acertou todas a letras, logo venceu
-        p_resultado.style.display = 'block'
-        p_resultado.innerText = 'Ganhou'
-        div_jogar.style.display = 'none'
-    }
-
-    
 } // end tentativa()
 
 //----------- Inicio-----------
@@ -160,5 +185,7 @@ palavra_escolhida.focus() // Cursor na caixa de texto
  - Acabar o jogo quando zerar as tentativas (check)
  - Fazer ganhar o jogo (check)
  - Fazer o bonequinho responder aos erros (check)
- - Mexer nos estilos
+ - Validar se é letra (check)
+ - Validar se a letra já fui informada (check)
+ - Mexer nos estilos (1/2)
 */
