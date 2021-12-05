@@ -2,6 +2,7 @@
 var div_escolher = document.getElementById('escolher')
 var div_jogar = document.getElementById('jogar')
 var div_resul = document.getElementById('resul')
+var body = document.getElementsByTagName('body')[0]
 
 // -----------ul-----------
 var ul = document.createElement('ul')
@@ -121,12 +122,13 @@ function tentativa(){ // Testa a tentativa do jogador
 
             for (l in palavra){ // Varre a palavra escolhida
                 if (tem(letter, palavra)){ // Se tem a letra informada na palavra
-                    
+                    body.style.backgroundColor = 'green'
                     if (!tem(letter, letras_corretas)){ // Se não tem a letra correta nos acertos ainda
                         letras_corretas.push(letter) // Add ao array
                     } // end if
                     
                 } else{ // Se NAO tem a letra informada na palavra
+                    body.style.backgroundColor = 'red'
                     if (!tem(letter, letras_erradas)){ // Se NAO tem a letra incorreta nos erros ainda
                         letras_erradas.push(letter) // Add ao array
                         tentativas -= 1 // Perde uma vida   
