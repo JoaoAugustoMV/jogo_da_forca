@@ -59,8 +59,7 @@ function tem(x, lista){ // Diz se tal valor tem na lista
     return false
 }
 function validaLetra(l){ // Valida se é letra ou se já foi informada
-    let code = l.charCodeAt()
-    alert(code)
+    let code = l.charCodeAt() // codigo ASCII
     let letras_informadas = []
     letras_informadas = (letras_informadas.concat(letras_corretas, letras_erradas))
     
