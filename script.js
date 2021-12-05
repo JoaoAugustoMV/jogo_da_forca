@@ -58,6 +58,10 @@ function tem(x, lista){ // Diz se tal valor tem na lista
     }
     return false
 }
+function validaLetra(l){
+
+
+} // end validaLetra()
 
 function boneco(tentativas){ // Retorna como esta a situação do boneco(um caminho de imagem)
     let fontes =  // array com cada caminho
@@ -92,23 +96,24 @@ function confirmar(){ // Escolha da palavra
 
 function tentativa(){ // Testa a tentativa do jogador
     var escondida = '' // str para mostrar como esta os acertos da palavra
-    
-    for (l in palavra_escolhida.value){ // Varre a palavra escolhida
-        if (tem(letra.value, palavra_escolhida.value)){ // Se tem a letra informada na palavra
+    let palavra = palavra_escolhida.value.toUpperCase()
+    let letter = letra.value.toUpperCase()
+    for (l in palavra){ // Varre a palavra escolhida
+        if (tem(letter, palavra)){ // Se tem a letra informada na palavra
              
-            if (!tem(letra.value, letras_corretas)){ // Se não tem a letra correta nos acertos ainda
-                letras_corretas.push(letra.value) // Add ao array
+            if (!tem(letter, letras_corretas)){ // Se não tem a letra correta nos acertos ainda
+                letras_corretas.push(letter) // Add ao array
             }
             
         } else{ // Se NAO tem a letra informada na palavra
-            if (!tem(letra.value, letras_erradas)){ // Se NAO tem a letra incorreta nos erros ainda
-                letras_erradas.push(letra.value) // Add ao array
+            if (!tem(letter, letras_erradas)){ // Se NAO tem a letra incorreta nos erros ainda
+                letras_erradas.push(letter) // Add ao array
                 tentativas -= 1 // Perde uma vida
                 
             }
         }
-        if (tem(palavra_escolhida.value[l], letras_corretas)){ // Se a letra do indice esta nas já acertadas
-            escondida += palavra_escolhida.value[l] // Exibe a letra acertada
+        if (tem(palavra[l], letras_corretas)){ // Se a letra do indice esta nas já acertadas
+            escondida += palavra[l] // Exibe a letra acertada
         } else{ // Se a letra do indice nao foi acertada
             escondida += ' _ ' // 
         }
@@ -131,7 +136,7 @@ function tentativa(){ // Testa a tentativa do jogador
 
     if (tentativas == 0){ // Se acabar as tentativas, o jogador perde
         p_resultado.style.display = 'block' //
-        p_resultado.innerHTML = `Perdeu <br> A palavra era ${palavra_escolhida.value}`
+        p_resultado.innerHTML = `Perdeu <br> A palavra era ${palavra}`
         div_jogar.style.display = 'none'
     }
     if (escondida.indexOf('_') == -1){ // Se não tiver '_' significa que o jogador acertou todas a letras, logo venceu
