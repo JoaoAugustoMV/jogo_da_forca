@@ -21,6 +21,7 @@ var h1 = document.getElementsByTagName('h1')[0] // Pega as tag h1, no caso só t
 
 // -----------inputs-----------
 var btn = document.getElementsByClassName('botao')
+var btn_jogarNovamente = document.getElementById('btn_jogarNovamente')
 var palavra_escolhida = document.getElementById('palavra_escolhida')
 var letra = document.getElementById('input_letra') // Letra informada pelo jogador
 
@@ -42,6 +43,7 @@ letra.addEventListener('keypress', function(enter){
 var p_escondida = document.getElementById('escondida')
 var p_status = document.getElementById('status')
 var p_resultado = document.getElementById('resultado')
+var tag_p = document.querySelector('p#tag_p')
 
 
 // -----------vars-----------
@@ -97,10 +99,9 @@ function boneco(tentativas){ // Retorna como esta a situação do boneco(um cami
 
 function confirmar(){ // Escolha da palavra
     
-    let tag_p = document.createElement('p') // Criando a tag p
-    let texto_p = document.createTextNode('Palavra confirmada') // Criando um str para adicionar na tag p
-    tag_p.appendChild(texto_p) // Adicionando o texto na tag p
-    div_escolher.appendChild(tag_p) // Adicionando a tag p na div
+    tag_p.style.display = 'block'
+    tag_p.innerText = 'Palavra confirmada' 
+    
     
     setTimeout(function (){ // Espera x milissegundos para executar a função passada
         div_escolher.style.display = 'none' // Esconde a div
@@ -114,6 +115,7 @@ function confirmar(){ // Escolha da palavra
 
 
 function tentativa(){ // Testa a tentativa do jogador
+
     var escondida = '' // str para mostrar como esta os acertos da palavra
     let palavra = palavra_escolhida.value.toUpperCase()
     let letter = letra.value.toUpperCase()
@@ -162,11 +164,13 @@ function tentativa(){ // Testa a tentativa do jogador
                 p_resultado.style.display = 'block' //
                 p_resultado.innerHTML = `Perdeu <br> A palavra era ${palavra}`
                 div_jogar.style.display = 'none'
+                btn_jogarNovamente.style.display = 'block'
             } // end if
             if (escondida.indexOf('_') == -1){ // Se não tiver '_' significa que o jogador acertou todas a letras, logo venceu
                 p_resultado.style.display = 'block'
                 p_resultado.innerText = 'Ganhou'
                 div_jogar.style.display = 'none'
+                btn_jogarNovamente.style.display = 'block'
             } // end if
 
         } /* end if(validaLetra) */ else{
@@ -174,6 +178,22 @@ function tentativa(){ // Testa a tentativa do jogador
         }
 } // end tentativa()
 
+
+function jogar_novamente(){ // 
+    div_resul.style.display = 'none'
+    div_jogar.style.display = 'none'
+    tag_p.innerText = ''
+    p_escondida.innerText = ''
+    div_escolher.style.display = 'block'
+    palavra_escolhida.value = ''
+    palavra_escolhida.focus()
+
+    tentativas = 6
+    letras_erradas = [] // Guarda os acertos
+    letras_corretas = []
+    btn_jogarNovamente.style.display = 'none'
+    p_resultado.innerText = ''
+} // end jogar_novamente
 //----------- Inicio-----------
 palavra_escolhida.focus() // Cursor na caixa de texto
 
@@ -189,4 +209,5 @@ palavra_escolhida.focus() // Cursor na caixa de texto
  - Validar se é letra (check)
  - Validar se a letra já fui informada (check)
  - Mexer nos estilos (1/2)
+ - Jogar Novamente
 */

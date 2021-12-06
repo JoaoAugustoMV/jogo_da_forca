@@ -15,6 +15,7 @@
                 <p>Insira a palavra a ser descoberta:</p>
                 <input type="text" name="" id="palavra_escolhida">
                 <input type="button" value="Confirmar" onclick=confirmar() class='botao'>
+                <p id='tag_p' hidden>Palavra confirmada</p>
             </div>
             <div id='jogar' class='game' hidden>
                 
@@ -27,6 +28,7 @@
             <div id='resul' class='game' hidden>
                 <p id='escondida'></p>
                 <p hidden id='resultado'>teste</p>
+                <input id='btn_jogarNovamente' type="button" value="Jogar Novamente" hidden onclick=jogar_novamente()>
             </div>
         </main>
     

@@ -59,8 +59,11 @@ div#jogar{
 }
 
 div#resul{
-    
     margin-top:0px;
+}
+
+input#btn_jogarNovamente{
+    margin:auto;
 }
 
 footer{
