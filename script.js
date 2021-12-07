@@ -182,17 +182,21 @@ function tentativa(){ // Testa a tentativa do jogador
 function jogar_novamente(){ // 
     div_resul.style.display = 'none'
     div_jogar.style.display = 'none'
+    div_escolher.style.display = 'block'
     tag_p.innerText = ''
     p_escondida.innerText = ''
-    div_escolher.style.display = 'block'
-    palavra_escolhida.value = ''
-    palavra_escolhida.focus()
+    
 
     tentativas = 6
     letras_erradas = [] // Guarda os acertos
     letras_corretas = []
     btn_jogarNovamente.style.display = 'none'
     p_resultado.innerText = ''
+
+
+    palavra_escolhida.value = ''
+    palavra_escolhida.focus()
+    
 } // end jogar_novamente
 //----------- Inicio-----------
 palavra_escolhida.focus() // Cursor na caixa de texto
